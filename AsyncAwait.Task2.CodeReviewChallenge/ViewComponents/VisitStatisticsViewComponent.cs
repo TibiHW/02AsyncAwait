@@ -1,7 +1,6 @@
 ﻿using CloudServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Runtime.InteropServices.ObjectiveC;
 using System.Threading.Tasks;
 
 namespace AsyncAwait.Task2.CodeReviewChallenge.ViewComponents
@@ -19,11 +18,8 @@ namespace AsyncAwait.Task2.CodeReviewChallenge.ViewComponents
         {
             var staticRegTask = Task.Run(() => _statisticService.RegisterVisitAsync(path));
 
-            var visitCountTask = await staticRegTask.ContinueWith(
-                async (antecedent, state) => await _statisticService.GetVisitsCountAsync(state.ToString()),
-                path);
-
-            var result = await visitCountTask;
+            var result = await _statisticService.GetVisitsCountAsync(path);
+            result += 1;
 
             return View(null, result);
         }
