@@ -4,9 +4,9 @@ namespace AsyncAwait.Task2.CodeReviewChallenge.Services;
 
 public class PrivacyDataService : IPrivacyDataService
 {
-    public async ValueTask<string> GetPrivacyDataAsync()
+    public string GetPrivacyData()
     {
-        return await ValueTask.FromResult("This Policy describes how async/await processes your personal data," +
-                                     "but it may not address all possible data processing scenarios.");
+        return "This Policy describes how async/await processes your personal data," +
+                "but it may not address all possible data processing scenarios.";
     }
 }

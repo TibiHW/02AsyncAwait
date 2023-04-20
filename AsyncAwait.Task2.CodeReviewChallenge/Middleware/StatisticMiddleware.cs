@@ -23,9 +23,12 @@ public class StatisticMiddleware
     {
         string path = context.Request.Path;
 
+        await _statisticService.RegisterVisitAsync(path);
+
+        var visitCount = await _statisticService.GetVisitsCountAsync(path);
         context.Response.Headers.Add(
-            CustomHttpHeaders.TotalPageVisitsKey,
-            context.Request.Path.ToString());
+            CustomHttpHeaders.TotalPageVisits,
+            visitCount.ToString());
 
         await _next(context);
     }
