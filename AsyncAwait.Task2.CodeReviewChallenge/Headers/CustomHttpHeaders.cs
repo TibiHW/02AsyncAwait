@@ -3,5 +3,4 @@
 public class CustomHttpHeaders
 {
     public const string TotalPageVisits = "TotalPageVisits";
-    public const string TotalPageVisitsKey = "TotalPageVisitsKey";
 }
