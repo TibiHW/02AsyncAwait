@@ -25,9 +25,9 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    public async Task<IActionResult> PrivacyAsync()
     {
-        ViewBag.Message = _privacyDataService.GetPrivacyData();
+        ViewBag.Message = await _privacyDataService.GetPrivacyDataAsync();
         return View();
     }
 
