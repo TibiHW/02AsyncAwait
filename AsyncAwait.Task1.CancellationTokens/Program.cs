@@ -16,6 +16,8 @@ namespace AsyncAwait.Task1.CancellationTokens;
 
 internal class Program
 {
+    static CancellationTokenSource src = null;
+   
     /// <summary>
     /// The Main method should not be changed at all.
     /// </summary>
@@ -28,7 +30,6 @@ internal class Program
         Console.WriteLine();
 
         Console.WriteLine("Enter N: ");
-        CancellationTokenSource src = null;
 
         try
         {
@@ -46,7 +47,7 @@ internal class Program
 
                     src = new CancellationTokenSource();
 
-                    Task task = Task.Run(() => CalculateSum(n, src.Token), src.Token);
+                    Task task = Task.Run(() => CalculateSum(n, src.Token));
                     Console.WriteLine($"The task for {n} started... Enter N to cancel the request:");
                 }
                 else
@@ -71,10 +72,10 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static async Task CalculateSum(int n, CancellationToken token)
+    private static void CalculateSum(int n, CancellationToken token)
     {
         // todo: make calculation asynchronous
-        var sum = await Calculator.Calculate(n, token);
+        var sum = Calculator.Calculate(n, token);
 
         // todo: add code to process cancellation and uncomment this line
         if (token.IsCancellationRequested)
