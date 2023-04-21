@@ -19,11 +19,9 @@ public class ManualAssistant : IAssistant
     {
         try
         {
-            await _supportService.RegisterSupportRequestAsync(requestInfo)
-                .ConfigureAwait(false);
+            await _supportService.RegisterSupportRequestAsync(requestInfo);
 
-            return await _supportService.GetSupportInfoAsync(requestInfo)
-                .ConfigureAwait(false);
+            return await _supportService.GetSupportInfoAsync(requestInfo);
         }
         catch (HttpRequestException ex)
         {
